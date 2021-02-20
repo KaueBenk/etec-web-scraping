@@ -7,10 +7,25 @@ from sys import exit
 
 # configurable variables
 get_html_from_url = True
-# ensino = int(input('Informe o código do tipo de ensino desejado: '))
-# etec = int(input('Informe o código da etec desejada'))
-url = f'https://www.vestibulinhoetec.com.br/classificacao-final/lista.asp?ensino=4&codetec=015.00S&codescolacurso=1637&n=&o=1'
 get_html_from_disk = False
+auto_or_manual_url = int(input('Quer informar a URL manualmente ou prefere automaticamente?\n[1] - Manual\n[2] - Automático\nEscolha uma opção: '))
+if auto_or_manual_url == 1:
+    url = str(input('Informe a URL: '))
+elif auto_or_manual_url == 2:
+    ensino = int(input('Informe o código do tipo de ensino desejado: '))
+    etec = str(input('Informe o código da ETEC desejada: '))
+    varios_cursos = int(input('Quer pegar os dados de vários cursos?\n[1] - SIM\n[2] - NÃO\nEscolha uma opção: '))
+    if varios_cursos == 1:
+        curso = int(input('Informe o código do primeiro curso: '))
+        url = f'https://www.vestibulinhoetec.com.br/classificacao-final/lista.asp?ensino={ensino}&codetec={etec}&codescolacurso={curso}&n=&o=1'
+    elif varios_cursos == 2:
+        curso = int(input('Informe o código do curso desejado: '))
+        url = f'https://www.vestibulinhoetec.com.br/classificacao-final/lista.asp?ensino={ensino}&codetec={etec}&codescolacurso={curso}&n=&o=1'
+    else:
+        print('Esta opção nao exite.')
+else:
+    print('Esta opção nao exite.')
+    
 file = 'Administração | Classificação geral.html'
 max_lines = 60  # define te maximum number of lines in csv file
 
@@ -46,6 +61,7 @@ def create_directory(dir_school, school):
 
 # loop
 while True:
+    url = f'https://www.vestibulinhoetec.com.br/classificacao-final/lista.asp?ensino={ensino}&codetec={etec}&codescolacurso={curso}&n=&o=1'
     if get_html_from_url:
         html = get_html_from_url(url)
     elif get_html_from_disk:
@@ -84,3 +100,4 @@ while True:
         count += 1
         if count == max_lines:
             break
+    curso += 1
