@@ -6,7 +6,7 @@ So I made this script to facilitate saving the classification list of my interes
 
 ## How to use
 
-Open links.txt and paste the links of the courses you want to save the classification list, line by line with an enter at the end of each link in the following model:
+Open links.txt and paste the links of the courses you want to save the classification list, line by line with an enter at the end of each link, like in the following model:
 
 ```url
 https://www.vestibulinhoetec.com.br/classificacao-final/lista.asp?ensino=4&codetec=015.00S&codescolacurso=1639&n=&o=1
